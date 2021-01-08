@@ -3,14 +3,14 @@ const mongoose = require('mongoose');
 const {User} = require('./models/User');
 const app = express()
 const bodyParser = require('body-parser');
-
+const config = require('./config/key');
 //application/x-www-form-urlencoded 이렇게 된 데이터를 가져오기 위함
 app.use(bodyParser.urlencoded({extended:true}));
 
 //application/json 이렇게 된 데이터를 가져오기 위함
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://ProtoSeo:<password>@boiler-plate.r7mki.mongodb.net/test?retryWrites=true&w=majority',{
+mongoose.connect(config.mongoURI,{
   useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true,useFindAndModify:true}
 )
 .then(()=>console.log('Mongo DB Connected...'))
