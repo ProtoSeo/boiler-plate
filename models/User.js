@@ -73,7 +73,7 @@ userSchema.methods.generateToken = function(cb){
   })
 }
 
-userSchema.methods.findByToken = function(token,cb){
+userSchema.statics.findByToken = function(token,cb){
   var user = this;
   //토큰을 복호화 한다.
   jwt.verify(token,"secretToken",function(err, decoded){
@@ -83,7 +83,7 @@ userSchema.methods.findByToken = function(token,cb){
       if(err) return cb(err);
       cb(null,user);
     })
-  } )
+  })
 }
 const User = mongoose.model('User',userSchema);
 

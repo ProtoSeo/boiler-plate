@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
 const {auth }  =require('./middleware/auth');
+const { Router } = require('express');
 //application/x-www-form-urlencoded 이렇게 된 데이터를 가져오기 위함
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -84,4 +85,12 @@ app.get('/api/users/auth',auth,(req,res)=>{
   });
 });
 
+app.get('/api/users/logout',auth,(req,res)=>{
+  User.findOneAndUpdate({_id:req.user._id},{token:""},(err,user)=>{
+    if(err) return res.json({success:false,err});
+    return res.status(200).send({
+      success:true
+    })
+  })
+})
 app.listen(3000)
