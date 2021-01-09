@@ -93,4 +93,4 @@ app.get('/api/users/logout',auth,(req,res)=>{
     })
   })
 })
-app.listen(3000)
+app.listen(5000);
