@@ -24,6 +24,8 @@ app.get('/', function (req, res) {
   res.send('hello world')
 })
 
+app.get('/api/hello', (req, res) => res.send('Hello World!~~ '))
+
 app.post('/api/users/register',(req,res)=>{
   //  회원가입할때 필요한 정보를 클라이언트로 받아오면 그 것들을 database에 넣어준다.
   const user = new User(req.body);
